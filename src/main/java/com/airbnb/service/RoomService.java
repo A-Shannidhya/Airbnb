@@ -1,5 +1,10 @@
 package com.airbnb.service;
 
+import com.airbnb.dto.RoomDTO;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /*
  * Copyright (c) 2025 Ayshi Shannidhya Panda. All rights reserved.
  *
@@ -9,20 +14,17 @@ package com.airbnb.service;
  *
  * Project: Airbnb
  * Author: Ayshi Shannidhya Panda
- * Created on: 14-12-2025
+ * Created on: 15-12-2025
  */
+@Service
+public interface RoomService {
 
-import com.airbnb.dto.HotelDTO;
+    RoomDTO createNewRoom(Long hotelId, RoomDTO roomDTO);
 
-public interface HotelService {
+    List<RoomDTO> getAllRoomsInHotel(Long hotelId);
 
-    HotelDTO createNewHotel(HotelDTO hotelDTO);
+    RoomDTO getRoomId(Long roomId);
 
-    HotelDTO getHotelById(Long id);
+    void deleteRoomById(Long roomId);
 
-    HotelDTO updateHotelById(Long id, HotelDTO hotelDTO);
-
-    void deleteHotelById(Long id);
-
-    void activateHotel(long id);
 }
