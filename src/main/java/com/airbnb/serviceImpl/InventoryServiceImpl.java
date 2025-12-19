@@ -2,11 +2,9 @@ package com.airbnb.serviceImpl;
 
 import com.airbnb.dto.HotelDTO;
 import com.airbnb.dto.HotelSearchRequest;
-import com.airbnb.exception.ResourceNotFoundException;
 import com.airbnb.models.Hotel;
 import com.airbnb.models.Inventory;
 import com.airbnb.models.Room;
-import com.airbnb.repository.HotelRepo;
 import com.airbnb.repository.InventoryRepo;
 import com.airbnb.service.InventoryService;
 import lombok.NonNull;
@@ -42,7 +40,7 @@ public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepo inventoryRepo;
 
     @Override
-    public void initializeRoomForAYear(Room room) {
+    public void initializeRoomForAYear(@NonNull Room room) {
         log.info("Initializing inventory for roomId={} hotelId={} for one year",
                 room.getId(), room.getHotel().getId());
 
@@ -69,7 +67,7 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public void deleteAllInventories(Room room) {
+    public void deleteAllInventories(@NonNull Room room) {
         log.info("Deleting all inventories for roomId={}", room.getId());
         inventoryRepo.deleteByRoom(room);
         log.info("Deleted all inventories for roomId={}", room.getId());

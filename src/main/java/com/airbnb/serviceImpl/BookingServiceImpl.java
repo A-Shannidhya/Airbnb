@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -36,7 +35,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-
 public class BookingServiceImpl implements BookingService {
     private final GuestRepo guestRepo;
 
@@ -129,7 +127,7 @@ public class BookingServiceImpl implements BookingService {
         return modelMapper.map(booking, BookingDTO.class);
     }
 
-    public boolean hasBookingExpired(Booking booking) {
+    public boolean hasBookingExpired(@NonNull Booking booking) {
         return booking.getCreatedAt().plusMinutes(10).isBefore(LocalDateTime.now());
     }
 
