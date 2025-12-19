@@ -13,6 +13,9 @@ package com.airbnb.enumeration;
  */
 public enum BookingStatus {
     RESERVED,
+    GUESTS_ADDED,
+    PAYMENTS_PENDING,
     CONFIRMED,
-    CANCELLED
+    CANCELLED,
+    EXPIRED
 }

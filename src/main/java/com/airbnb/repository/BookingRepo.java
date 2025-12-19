@@ -1,8 +1,8 @@
-package com.airbnb.service;
+package com.airbnb.repository;
 
-import com.airbnb.dto.RoomDTO;
-
-import java.util.List;
+import com.airbnb.models.Booking;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /*
  * Copyright (c) 2025 Ayshi Shannidhya Panda. All rights reserved.
@@ -13,16 +13,8 @@ import java.util.List;
  *
  * Project: Airbnb
  * Author: Ayshi Shannidhya Panda
- * Created on: 15-12-2025
+ * Created on: 18-12-2025
  */
-public interface RoomService {
-
-    RoomDTO createNewRoom(Long hotelId, RoomDTO roomDTO);
-
-    List<RoomDTO> getAllRoomsInHotel(Long hotelId);
-
-    RoomDTO getRoomId(Long roomId);
-
-    void deleteRoomById(Long roomId);
-
+@Repository
+public interface BookingRepo extends JpaRepository<Booking, Long> {
 }

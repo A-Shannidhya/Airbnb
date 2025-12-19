@@ -1,6 +1,8 @@
-package com.airbnb.service;
+package com.airbnb.dto;
 
-import com.airbnb.dto.RoomDTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.List;
 
@@ -13,16 +15,14 @@ import java.util.List;
  *
  * Project: Airbnb
  * Author: Ayshi Shannidhya Panda
- * Created on: 15-12-2025
+ * Created on: 18-12-2025
  */
-public interface RoomService {
+@Data
+@AllArgsConstructor
+public class HotelInfoDTO {
 
-    RoomDTO createNewRoom(Long hotelId, RoomDTO roomDTO);
+    private HotelDTO hotelDTO;
+    private List<RoomDTO> roomDTO;
 
-    List<RoomDTO> getAllRoomsInHotel(Long hotelId);
-
-    RoomDTO getRoomId(Long roomId);
-
-    void deleteRoomById(Long roomId);
 
 }

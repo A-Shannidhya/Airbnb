@@ -12,40 +12,36 @@ package com.airbnb.advice;
  * Created on: 15-12-2025
  */
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.Instant;
+import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ApiResponse<T> {
 
-    private boolean success;
+    private LocalDate timestamp;
     private T data;
     private ApiError error;
-    private Instant timestamp;
+
+    public ApiResponse() {
+        this.timestamp = LocalDate.now();
+    }
 
     /**
      * Success response constructor
      */
     public ApiResponse(T data) {
-        this.success = true;
+        this();
         this.data = data;
-        this.error = null;
-        this.timestamp = Instant.now();
     }
 
     /**
      * Error response constructor
      */
     public ApiResponse(ApiError error) {
-        this.success = false;
-        this.data = null;
+        this();
         this.error = error;
-        this.timestamp = Instant.now();
     }
 }
 

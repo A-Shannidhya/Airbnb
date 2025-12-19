@@ -12,6 +12,7 @@ package com.airbnb.models;
  * Created on: 13-12-2025
  */
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -67,6 +68,7 @@ public class Hotel {
     private User owner;
 
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Room> rooms;
 
 }

@@ -1,8 +1,4 @@
-package com.airbnb.service;
-
-import com.airbnb.dto.RoomDTO;
-
-import java.util.List;
+package com.airbnb.dto;
 
 /*
  * Copyright (c) 2025 Ayshi Shannidhya Panda. All rights reserved.
@@ -13,16 +9,18 @@ import java.util.List;
  *
  * Project: Airbnb
  * Author: Ayshi Shannidhya Panda
- * Created on: 15-12-2025
+ * Created on: 18-12-2025
  */
-public interface RoomService {
 
-    RoomDTO createNewRoom(Long hotelId, RoomDTO roomDTO);
+import lombok.Data;
 
-    List<RoomDTO> getAllRoomsInHotel(Long hotelId);
+import java.time.LocalDate;
 
-    RoomDTO getRoomId(Long roomId);
-
-    void deleteRoomById(Long roomId);
-
+@Data
+public class BookingRequest {
+    private Long hotelId;
+    private Long roomId;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private Integer roomsCount;
 }

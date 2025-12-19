@@ -1,6 +1,9 @@
 package com.airbnb.service;
 
-import com.airbnb.dto.RoomDTO;
+import com.airbnb.dto.BookingDTO;
+import com.airbnb.dto.BookingRequest;
+import com.airbnb.dto.GuestDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,16 +16,11 @@ import java.util.List;
  *
  * Project: Airbnb
  * Author: Ayshi Shannidhya Panda
- * Created on: 15-12-2025
+ * Created on: 18-12-2025
  */
-public interface RoomService {
+@Service
+public interface BookingService {
+    BookingDTO initialiseBooking(BookingRequest bookingRequest);
 
-    RoomDTO createNewRoom(Long hotelId, RoomDTO roomDTO);
-
-    List<RoomDTO> getAllRoomsInHotel(Long hotelId);
-
-    RoomDTO getRoomId(Long roomId);
-
-    void deleteRoomById(Long roomId);
-
+    BookingDTO addGuests(Long bookingId, List<GuestDTO> guestDTO);
 }

@@ -13,6 +13,7 @@ package com.airbnb.service;
  */
 
 import com.airbnb.dto.HotelDTO;
+import com.airbnb.dto.HotelInfoDTO;
 
 public interface HotelService {
 
@@ -25,4 +26,6 @@ public interface HotelService {
     void deleteHotelById(Long id);
 
     void activateHotel(long id);
+
+    HotelInfoDTO getHotelInfoById(Long hotelId);
 }
