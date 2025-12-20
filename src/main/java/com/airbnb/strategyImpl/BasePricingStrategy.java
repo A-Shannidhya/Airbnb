@@ -4,7 +4,6 @@ import com.airbnb.models.Inventory;
 import com.airbnb.strategy.PricingStrategy;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
@@ -20,7 +19,7 @@ import java.math.BigDecimal;
  * Created on: 20-12-2025
  */
 
-@Service
+
 @RequiredArgsConstructor
 public class BasePricingStrategy implements PricingStrategy {
 

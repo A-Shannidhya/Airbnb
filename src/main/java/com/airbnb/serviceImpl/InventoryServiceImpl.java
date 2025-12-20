@@ -1,16 +1,15 @@
 package com.airbnb.serviceImpl;
 
-import com.airbnb.dto.HotelDTO;
+import com.airbnb.dto.HotelPriceDTO;
 import com.airbnb.dto.HotelSearchRequest;
-import com.airbnb.models.Hotel;
 import com.airbnb.models.Inventory;
 import com.airbnb.models.Room;
+import com.airbnb.repository.HotelMinPriceRepo;
 import com.airbnb.repository.InventoryRepo;
 import com.airbnb.service.InventoryService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -36,8 +35,8 @@ import java.time.temporal.ChronoUnit;
 @Slf4j
 public class InventoryServiceImpl implements InventoryService {
 
-    private final ModelMapper modelMapper;
     private final InventoryRepo inventoryRepo;
+    private final HotelMinPriceRepo hotelMinPriceRepo;
 
     @Override
     public void initializeRoomForAYear(@NonNull Room room) {
@@ -74,7 +73,7 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public Page<HotelDTO> searchHotels(@NonNull HotelSearchRequest hotelSearchRequest) {
+    public Page<HotelPriceDTO> searchHotels(@NonNull HotelSearchRequest hotelSearchRequest) {
         log.info("Searching hotels for city={}, startDate={}, endDate={}, roomsCount={}, page={}, size={}",
                 hotelSearchRequest.getCity(),
                 hotelSearchRequest.getStartDate(),
@@ -88,7 +87,7 @@ public class InventoryServiceImpl implements InventoryService {
         long dateCount =
                 ChronoUnit.DAYS.between(hotelSearchRequest.getStartDate(), hotelSearchRequest.getEndDate()) + 1;
 
-        Page<Hotel> hotelPage = inventoryRepo.findHotelsWithAvailableInventory(
+        Page<HotelPriceDTO> hotelPage = hotelMinPriceRepo.findHotelsWithAvailableInventory(
                 hotelSearchRequest.getCity(),
                 hotelSearchRequest.getStartDate(),
                 hotelSearchRequest.getEndDate(),
@@ -99,7 +98,6 @@ public class InventoryServiceImpl implements InventoryService {
 
         log.info("Found {} hotels matching search criteria", hotelPage.getTotalElements());
 
-        //hotelPage is converted into HotelDTO
-        return hotelPage.map((HotelElement) -> modelMapper.map(HotelElement, HotelDTO.class));
+        return hotelPage;
     }
 }

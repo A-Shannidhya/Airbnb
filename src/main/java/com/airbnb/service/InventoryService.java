@@ -1,8 +1,7 @@
 package com.airbnb.service;
 
-import com.airbnb.dto.HotelDTO;
+import com.airbnb.dto.HotelPriceDTO;
 import com.airbnb.dto.HotelSearchRequest;
-import com.airbnb.models.Hotel;
 import com.airbnb.models.Room;
 import org.springframework.data.domain.Page;
 
@@ -23,5 +22,5 @@ public interface InventoryService {
 
     void deleteAllInventories(Room room);
 
-    Page<HotelDTO> searchHotels(HotelSearchRequest hotelSearchRequest);
+    Page<HotelPriceDTO> searchHotels(HotelSearchRequest hotelSearchRequest);
 }
